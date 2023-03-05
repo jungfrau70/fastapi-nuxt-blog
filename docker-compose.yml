@@ -1,26 +1,25 @@
-version: '3'
+version: "3"
 services:
-
   frontend:
-    build: ./app
+    build: ./frontend
     command: yarn dev
     volumes:
-        - ./app:/app
+      - ./frontend:/app
     working_dir: /app
     ports:
-        - "3000:3000"
+      - "3000:3000"
     environment:
-        HOST: 0.0.0.0
+      HOST: 0.0.0.0
 
   fastapi:
     build: ./backend
     container_name: fastapi
-    command: /start-reload.sh
+    # command: /start-reload.sh
     # command: bash
     ports:
-      - 80:80
+      - 8000:8000
     volumes:
       - ./backend/app:/app
     environment:
-      - DATABASE_URL=sqlite:////app/app/test.db
+      # - DATABASE_URL=sqlite:////app/app/test.db
     tty: true
