@@ -1,7 +1,9 @@
+.DS_Store
 __pycache__
 .pytest_cache
 .mypy_cache
 .vscode
-DS_Store
-*.db
+.coverage
+
+dumped.json
 pics

@@ -1,6 +1,13 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.6
+FROM python:3.9-buster
 
-ADD ./app/requirements.txt /app/requirements.txt
+RUN mkdir app
 WORKDIR /app
-RUN python -m pip install -r requirements.txt
-COPY ./app /app
+
+ENV PATH="${PATH}:/root/.local/bin"
+ENV PYTHONPATH=.
+
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+COPY app/ .
