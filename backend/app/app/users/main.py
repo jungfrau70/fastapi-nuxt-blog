@@ -19,9 +19,11 @@ from app.users.crud import (
 from app.db.session import get_db
 from app.auth.authentications import get_current_active_user
 from app.users import process_image
-
+from app.db.session import engine
+from app.users.models import Base
 
 app = APIRouter()
+Base.metadata.create_all(engine)
 
 
 @app.get("/users/", response_model=List[schemas.User], tags=["user"])
@@ -41,7 +43,7 @@ def read_users(
 def create_user(
     user: schemas.UserCreate,
     db: Session = Depends(get_db),
-    current_user: schemas.User = Depends(get_current_active_user),
+    # current_user: schemas.User = Depends(get_current_active_user),
 ):
     db_user = get_user_by_email_query(db, email=user.email)
     if db_user:
@@ -68,7 +70,8 @@ def delete_user(
     db: Session = Depends(get_db),
     current_user: schemas.User = Depends(get_current_active_user),
 ):
-    db_user = get_user_by_password_query(db, email=user.email, password=user.password)
+    db_user = get_user_by_password_query(
+        db, email=user.email, password=user.password)
 
     if not db_user:
         raise HTTPException(status_code=400, detail="Does not exist")

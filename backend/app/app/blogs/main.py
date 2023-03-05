@@ -5,8 +5,11 @@ from app.blogs import models, schemas, crud, utils
 from app.db.session import get_db
 from app.auth.authentications import get_current_active_user
 from app.notifications.notify import post_mail_notify
+from app.db.session import engine
+from app.blogs.models import Base
 
 app = APIRouter()
+Base.metadata.create_all(engine)
 
 
 @app.get("/post/", response_model=schemas.Posts, tags=["post"])
@@ -30,7 +33,8 @@ def get_post(
         tags=tags,
         is_private=is_private,
     )
-    filtering_dict = utils.FilterIDPost(db, filtering).to_items() if filtering else {}
+    filtering_dict = utils.FilterIDPost(
+        db, filtering).to_items() if filtering else {}
     query, max_page, total = crud.get_post_query(
         db, skip=skip, limit=limit, is_private=filtering.is_private, **filtering_dict
     )
@@ -78,7 +82,8 @@ def update_post(
 ):
     _post = crud.get_post(db, post_id)
     if _post.author_id != current_user.id:
-        raise HTTPException(status_code=400, detail="must be modified by author")
+        raise HTTPException(
+            status_code=400, detail="must be modified by author")
     update_postID = utils.UpdateIDPost(db, post)
     if len(update_postID.to_items()) == 0:
         raise HTTPException(status_code=400, detail="no context")

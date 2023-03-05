@@ -1,3 +1,4 @@
+python-dotenv
 fastapi
 sqlalchemy
 sqlalchemy-utils
@@ -16,7 +17,10 @@ gunicorn
 uvicorn
 uvloop
 httptools
-psycopg2
+psycopg2-binary
 pytest
 pytest-cov
 pytest-asyncio
+
+pycodestyle
+autopep8
