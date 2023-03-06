@@ -46,6 +46,7 @@ def create_user(
     # current_user: schemas.User = Depends(get_current_active_user),
 ):
     db_user = get_user_by_email_query(db, email=user.email)
+    # print(db_user.__dict__)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     return create_user_query(db=db, user=user)
