@@ -93,8 +93,18 @@ export default {
 
   auth: {
     redirect: {
-        home: '/',
+        home: '/blog/list',
     },
+    token: {
+      property: 'token',
+      global: true,
+      required: true,
+      type: 'Bearer'
+    },
+    user: {
+      property: 'user',
+      autoFetch: true,
+    }, 
     strategies: {
         local: {
             endpoints: {

@@ -298,14 +298,18 @@ export default {
       //     Authorization: 'Bearer ' + apiToken,
       //     'Content-Type': 'application/json',
       //   },
-      axios[method](url, data, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods':
-            'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-          'Content-Type': 'application/json',
-        },
+      console.log(method)
+      this.$axios
+        .$post(url, { data 
+      // axios[method](url, data, {
+        // headers: {
+        //   'Access-Control-Allow-Origin': '*',
+        //   'Access-Control-Allow-Methods':
+        //     'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        //   'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        //   'Content-Type': 'application/json',
+        //   'Authorization': 'Bearer',
+        // },
       }).then((response) => {
         if (response.data && response.data.id) {
           // add new item to state
@@ -427,7 +431,10 @@ export default {
             'GET, POST, PATCH, PUT, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
           'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer ' + this.$apiToken,
         },
+              // {{ $auth.user.email }}
+      // return this.$store.getters.isAuthenticated
       }).then((response) => {
         this.items.splice(id, 1)
         this.loadItems()
