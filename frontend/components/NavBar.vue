@@ -30,28 +30,38 @@
       </v-navigation-drawer>
     </div>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-btn text to="/">Home</v-btn>
       <!-- <v-toolbar-title>{{ title }}</v-toolbar-title>     -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />        
       <!-- <v-spacer /> -->
-      <v-spacer />  
+      <v-spacer></v-spacer>
+
+      <div v-if="$auth.loggedIn">
+        <v-btn icon to="/blog/list/">
+          <v-icon>mdi-note</v-icon>
+        </v-btn>
+
+        <v-btn icon to="/blog/post/">
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
+
+        <v-btn icon to="/blog/dashboard">
+          <v-icon>mdi-dresser</v-icon>
+        </v-btn>
+      </div>
+      <v-spacer></v-spacer>
 
       <div v-if="$auth.loggedIn">
   
         {{ $auth.user.email }}
         <v-btn text @click="$auth.logout()">Logout</v-btn>
+        <v-btn text to="/user/profile">Profile</v-btn>
       </div>
       <div v-else>
-
-        <!-- <v-toolbar-title>{{ title }}</v-toolbar-title> -->
-        
+        <!-- <v-toolbar-title>{{ title }}</v-toolbar-title> -->   
         <v-spacer />        
         <v-btn text to="/user/login">Login</v-btn>
         <v-btn text to="/user/signup">SignUp</v-btn>
       </div>
-
-
-
     </v-app-bar>
 
     <v-main>
@@ -90,11 +100,11 @@ export default {
       drawer: false,
       fixed: false,
       items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Home',
-          to: '/',
-        },
+        // {
+        //   icon: 'mdi-apps',
+        //   title: 'Home',
+        //   to: '/',
+        // },
         {
           icon: 'mdi-account-multiple',
           title: 'Discussion(Summary)',

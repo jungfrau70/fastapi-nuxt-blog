@@ -122,11 +122,11 @@
 <script>
 export default {
   async asyncData({ app, query, error }) {
-    const post = await app.$axios.$get(`/post/${query.id}/`).catch((e) => {
+    const post = await app.$axios.$get(`/blog/post/${query.id}/`).catch((e) => {
       return [];
     });
     const comments = await app.$axios
-      .$get(`/comment/${query.id}/`)
+      .$get(`/blog/comment/${query.id}/`)
       .catch((e) => {
         return [];
       });
@@ -197,7 +197,7 @@ export default {
       if (this.message.trim().length > 0 && this.buttonIndex === 0) {
         this.buttonIndex = 1;
         await this.$axios
-          .$post("/comment/", {
+          .$post("/blog/comment/", {
             post_id: this.post.id,
             body: this.message,
             author_id: this.$auth.user.id,

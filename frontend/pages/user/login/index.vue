@@ -29,7 +29,7 @@
     export default {
         middleware({ store, redirect }) {
             if (store.$auth.loggedIn) {
-                redirect("/");
+                redirect("/blog/list");
             }
         },
         data() {

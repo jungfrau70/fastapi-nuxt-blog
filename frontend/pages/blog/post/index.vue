@@ -122,12 +122,12 @@ export default {
       return values;
     };
     return {
-      categoryEndpoint: "/category/",
-      seriesEndpoint: "/series/",
-      tagEndpoint: "/tag/",
-      categories: await getValue("/category/", app.$axios),
-      serieses: await getValue("/series/", app.$axios),
-      tags: await getValue("/tag/", app.$axios),
+      categoryEndpoint: "/blog/category/",
+      seriesEndpoint: "/blog/series/",
+      tagEndpoint: "/blog/tag/",
+      categories: await getValue("/blog/category/", app.$axios),
+      serieses: await getValue("/blog/series/", app.$axios),
+      tags: await getValue("/blog/tag/", app.$axios),
       src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
       public_at: app.$dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     };
@@ -259,7 +259,7 @@ export default {
       let formData = new FormData();
       formData.append("file", $file);
       this.$axios
-        .$post("/image/doc/", formData, {
+        .$post("/blog/image/doc/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

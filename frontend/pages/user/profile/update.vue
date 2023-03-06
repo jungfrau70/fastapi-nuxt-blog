@@ -75,7 +75,7 @@
             email: this.form.contactEmail,
             })
             .then((res) => {
-            this.$router.push("/profile/");
+            this.$router.push("/user/profile/");
             })
             .catch((e) => {
             console.log(e);
@@ -103,7 +103,7 @@
         this.form.imgUrl = data.icon;
         },
         toView() {
-        this.$router.push("/profile/");
+        this.$router.push("/user/profile/");
         },
     },
 };

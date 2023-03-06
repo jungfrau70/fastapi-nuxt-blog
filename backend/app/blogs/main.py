@@ -8,7 +8,9 @@ from app.notifications.notify import post_mail_notify
 from app.db.session import engine
 from app.blogs.models import Base
 
-app = APIRouter()
+app = APIRouter(
+    prefix='/blog'
+)
 Base.metadata.create_all(engine)
 
 

@@ -52,7 +52,7 @@ data() {
 },
 methods: {
     toUpdate() {
-      this.$router.push("/profile/update/");
+      this.$router.push("/user/profile/update/");
     },
 },
 };

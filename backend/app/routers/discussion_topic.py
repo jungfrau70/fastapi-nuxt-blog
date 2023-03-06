@@ -41,6 +41,7 @@ def show(id: int, db: Session = Depends(get_db)):
 @router.post('/', status_code=status.HTTP_201_CREATED,)
 # def create(request: schemas.Blog, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
 def create(request: Schema, db: Session = Depends(get_db), current_user=Depends(get_current_active_user)):
+    print(current_user)
     return discussion_topic.create(request, db, current_user)
 
 

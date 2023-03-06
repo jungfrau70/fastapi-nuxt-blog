@@ -6,7 +6,9 @@ from app.db.session import get_db
 from app.auth.authentications import get_current_active_user
 from app.images.process import save_image
 
-app = APIRouter()
+app = APIRouter(
+    prefix='/blog'
+)
 
 
 @app.get("/category/", response_model=List[schemas.Category], tags=["post_property"])
@@ -30,7 +32,8 @@ def create_category(
 ):
     instance = crud.get_category(db, category.name)
     if instance:
-        raise HTTPException(status_code=400, detail="Category already registered")
+        raise HTTPException(
+            status_code=400, detail="Category already registered")
     return crud.create_category(db, category)
 
 
@@ -55,7 +58,8 @@ def create_series(
 ):
     instance = crud.get_series(db, series.name)
     if instance:
-        raise HTTPException(status_code=400, detail="Series already registered")
+        raise HTTPException(
+            status_code=400, detail="Series already registered")
     return crud.create_series(db, series)
 
 
@@ -84,7 +88,7 @@ def create_tag(
     return crud.create_tag(db, tag)
 
 
-@app.post("/image/", response_model=schemas.Image)
+@app.post("/image/", response_model=schemas.Image, tags=["post_property"])
 async def upload_image(
     file: UploadFile = File(...), current_user=Depends(get_current_active_user)
 ):
@@ -92,7 +96,7 @@ async def upload_image(
     return {"image": pics}
 
 
-@app.post("/image/doc/", response_model=schemas.Image)
+@app.post("/image/doc/", response_model=schemas.Image, tags=["post_property"])
 async def upload_image_in_doc(
     file: UploadFile = File(...), current_user=Depends(get_current_active_user)
 ):

@@ -82,12 +82,12 @@ export default {
     return {
       posts: posts,
       total: data.total,
-      categoryEndpoint: "/category/",
-      seriesEndpoint: "/series/",
-      tagEndpoint: "/tag/",
-      categories: await getValue("/category/", app.$axios),
-      serieses: await getValue("/series/", app.$axios),
-      tags: await getValue("/tag/", app.$axios),
+      categoryEndpoint: "/blog/category/",
+      seriesEndpoint: "/blog/series/",
+      tagEndpoint: "/blog/tag/",
+      categories: await getValue("/blog/category/", app.$axios),
+      serieses: await getValue("/blog/series/", app.$axios),
+      tags: await getValue("/blog/tag/", app.$axios),
     };
   },
   data: () => ({
