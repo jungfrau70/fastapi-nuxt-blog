@@ -81,12 +81,15 @@ class DiscussionBase(BaseModel):
 
     progress: Optional[str]
     status: Optional[str]
-    discussion_topic: Optional[str]
+
+    title: Optional[str]
+    description: Optional[str]
 
 
-class Discussion(DiscussionBase):
-    class Config():
-        orm_mode = True
+class DiscussionIn(DiscussionBase):
+    pass
+    # class Config():
+    #     orm_mode = True
 
 
 class ShowDiscussion(DiscussionBase):

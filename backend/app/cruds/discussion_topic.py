@@ -17,8 +17,18 @@ def get_all(db: Session):
     records = db.query(Model).all()
     return records
 
-
+from datetime import datetime
 def create(request: Schema, db: Session, current_user):
+    # print(request.__dict__)
+    # date_posted = datetime.now()
+    # new_record = Model(**request.dict(), creator = current_user, created_at=date_posted)
+    # db.add(new_record)
+    # db.commit()
+    # db.refresh(new_record)
+    # return new_record
+
+    # record.create(request.__dict__)
+    # create(request.__dict__)
     new_record = Model(
         year=request.year,
         month=request.month,
@@ -29,8 +39,8 @@ def create(request: Schema, db: Session, current_user):
         progress=request.progress,
         status=request.status,
 
-        # title = request.title,
-        discussion_topic=request.discussion_topic,
+        title = request.title,
+        description=request.description,
 
         creator=current_user.id
     )
@@ -39,6 +49,17 @@ def create(request: Schema, db: Session, current_user):
     db.refresh(new_record)
     return new_record
 
+#     user = get_user_from_token(token, db)    
+#     record  = db.query(Item).filter(Item.id == id)
+#     if not record.first():
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"record with the id {id} does not exists")
+#     if record.first().owner_id == user.id:    
+#         record.update(request.__dict__)
+#         db.commit()
+#         return {"message": f"Details for Item ID {id} has been successfully updated"}
+#     else:        
+#         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+#                         detail="You are not authorized")  
 
 def upload_csv(file, db: Session):
     contents = file.file.read()

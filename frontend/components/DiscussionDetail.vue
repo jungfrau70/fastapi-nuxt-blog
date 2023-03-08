@@ -12,7 +12,7 @@
           <v-col
             v-for="(options, index) in colOptions"
             :key="index"
-            cols="12"
+            cols="15"
             md="1"
           >
             <v-select
@@ -34,19 +34,19 @@
           </v-col>
         </v-row>
 
-        <!-- <v-row>
+        <v-row>
           <v-text-field
             v-model="item['title']"
             label="Title"
             required
           ></v-text-field>
-        </v-row> -->
+        </v-row>
         <v-row>
           <v-col>
             <v-textarea
-              v-model="item['discussion_topic']"
+              v-model="item['description']"
               filled
-              label="Discussion Topic"
+              label="Description"
               auto-grow
               value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
             ></v-textarea>
@@ -131,8 +131,8 @@ export default {
       progress: null,
       status: null,
 
-      // title: null,
-      discussion_topic: null,
+      title: null,
+      description: null,
 
       creator: null,
       reviewer: null,
@@ -247,12 +247,12 @@ export default {
       this.item.progress = this.item.progress || 'created'
       this.item.status = this.item.status || 'in-progress'
 
-      // this.item.title = null
-      this.item.discussion_topic = null
+      this.item.title = this.item.title || '(title)'
+      this.item.description = this.item.description || '(description)'
 
       this.item.creator = null
       this.item.reviewer = null
-      this.item.updater = null
+      this.item.updater = this.$auth.user
     },
     resetItem() {
       this.item = {}

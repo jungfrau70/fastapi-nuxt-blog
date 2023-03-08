@@ -37,7 +37,7 @@
         </v-card-actions>
       </template>
       <v-card v-model="dialogAdd">
-        <VulnerabilityDetail
+        <DiscussionDetail
           :edited-item="newItem"
           @submit-item="submitItem"
           @close="close(newItem.id)"
@@ -143,23 +143,23 @@ export default {
 
       headers: [
         // { text: 'Id', value: 'id' },
-        { text: 'Year', value: 'year', width: '75' },
-        { text: 'Month', value: 'month', width: '75', sortable: true },
-        { text: 'Region', value: 'region', width: '75', sortable: true },
-        { text: 'AZ', value: 'az', width: '75', sortable: true },
-        { text: 'Tenant', value: 'tenant', width: '75', sortable: true },
+        { text: 'Year', value: 'year', width: '100' },
+        { text: 'Month', value: 'month', width: '100', sortable: true },
+        { text: 'Region', value: 'region', width: '100', sortable: true },
+        { text: 'AZ', value: 'az', width: '100', sortable: true },
+        { text: 'Tenant', value: 'tenant', width: '100', sortable: true },
 
         { text: 'Progress', value: 'progress', width: '110', sortable: true },
-        { text: 'Status', value: 'status', width: '75', sortable: true },
+        { text: 'Status', value: 'status', width: '100', sortable: true },
 
-        // { text: 'Title', value: 'title', sortable: true },
+        { text: 'Title', value: 'title', sortable: true },
         {
           text: 'Description(Topic)',
-          value: 'discussion_topic',
+          value: 'description',
           sortable: true,
           // width: '240',
         },
-        { text: 'Edit / Delete', value: 'actions', sortable: false },
+        { text: 'Edit / Delete', value: 'actions', width: '100', sortable: false },
       ],
 
       filters: {
@@ -254,8 +254,8 @@ export default {
         progress: item.progress,
         status: item.status,
 
-        // title: item.title,
-        discussion_topic: item.discussion_topic,
+        title: item.title,
+        description: item.description,
 
         // creator: item.creator,
         // reviewer: item.reviewer,

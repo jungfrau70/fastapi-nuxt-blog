@@ -227,7 +227,8 @@ class Discussion(Base, BaseMixin):
     progress = Column(String, nullable=True)
     status = Column(String, nullable=True)
 
-    discussion_topic = Column(String(length=3000), nullable=True)
+    title = Column(String, nullable=True)
+    description = Column(String(length=3000), nullable=True)
 
     creator = Column(String, nullable=True)
     reviewer = Column(String, nullable=True)

@@ -121,6 +121,8 @@ export default {
       db_type: null,
       count: null,
       status: null,
+      title: null,
+      description: null,
 
       creator: null,
       reviewer: null,
@@ -243,6 +245,8 @@ export default {
       this.item.db_type = this.item.db_type || 'PostgreSQL'
       this.item.count = this.item.count || 0
       this.item.status = this.item.status || 'PRD'
+      this.item.title = this.item.title || '(title)'
+      this.item.description = this.item.description || '(description)'
 
       this.item.creator = null
       this.item.reviewer = null

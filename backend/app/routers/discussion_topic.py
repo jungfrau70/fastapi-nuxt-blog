@@ -23,7 +23,7 @@ get_db = session.get_db
 
 
 SchemaShow = schemas.ShowDiscussion
-Schema = schemas.Discussion
+SchemaIn = schemas.DiscussionIn
 
 
 @router.get('/all', response_model=List[SchemaShow])
@@ -32,17 +32,16 @@ def all(db: Session = Depends(get_db)):
     return discussion_topic.get_all(db)
 
 
-@router.get('/{id}', status_code=200, response_model=Schema)
+@router.get('/{id}', status_code=200, response_model=SchemaShow)
 # def show(id:int, db: Session = Depends(get_db),current_user: schemas.User = Depends(oauth2.get_current_user)):
 def show(id: int, db: Session = Depends(get_db)):
     return discussion_topic.show(id, db)
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED,)
-# def create(request: schemas.Blog, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-def create(request: Schema, db: Session = Depends(get_db), current_user=Depends(get_current_active_user)):
+def create(request: SchemaIn, db: Session = Depends(get_db), current_user=Depends(get_current_active_user)):
+    print(request.__dict__)
     print(current_user)
-    print("I'm Here")
     return discussion_topic.create(request, db, current_user)
 
 
@@ -62,5 +61,5 @@ def destroy(id: int, db: Session = Depends(get_db)):
 
 @router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
 # def update(id:int, request: schemas.Blog, db: Session = Depends(get_db),current_user: schemas.User = Depends(oauth2.get_current_user)):
-def update(id: int, request: Schema, db: Session = Depends(get_db)):
+def update(id: int, request: SchemaIn, db: Session = Depends(get_db)):
     return discussion_topic.update(id, request, db)
